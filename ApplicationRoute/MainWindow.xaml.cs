@@ -60,10 +60,7 @@ namespace ApplicationRoute
             // ajout de la ville dans dictionnaire afin de supprimer le ellipse a la suppression de la ville
 
         }
-        public void Supprimer_ville(object sender, RoutedEventArgs e)
-        {
-            
-        }
+
         public void RunProgramme(object sender, RoutedEventArgs e)
         {
 
@@ -86,16 +83,15 @@ namespace ApplicationRoute
                 else
                 {
                     ListeVilles.Add((Ville)grid_seconde.SelectedItem);
+                    //dessiner la ville
+
+                    dessiner_ville((Ville)grid_seconde.SelectedItem);
+
                     ListeVillesSQLite.RemoveAt(grid_seconde.SelectedIndex);
                     MessageBox.Show("Ville Ajouté à la liste");
 
-                    
-                    //dessiner les villes
-                    foreach (Ville item in ListeVilles)
-                    {
-                        dessiner_ville(item);
                         
-                    }
+                    
                 }
                 
             }
@@ -140,13 +136,14 @@ namespace ApplicationRoute
             // faut faire peut être apres la verification si le nom de la ville existe déjà
             Ville v = new Ville(name_ville, (float)x, (float)y);
 
+            
             dessiner_ville(v);
             Ajouter_ville(v);
         }
 
         public void dessiner_ville(Ville v)
         {
-            Ellipse ellipse = new Ellipse() { Uid="elipse"+v.Nom};
+            Ellipse ellipse = new Ellipse() ;
             cpt2++;
             SolidColorBrush mySolidColorBrush = new SolidColorBrush();
             mySolidColorBrush.Color = Colors.Black;
@@ -159,6 +156,7 @@ namespace ApplicationRoute
             Canvas.SetTop(ellipse, v.Y -5);
             Canvas.SetLeft(ellipse, v.X -5);
             image_canvas.Children.Add(ellipse);
+            Dictionnaire_ville_ellipse.Add(v, ellipse);
 
         }
         public void Recherche(object sender, RoutedEventArgs e)
@@ -230,27 +228,32 @@ namespace ApplicationRoute
             } 
         }
         
-        public void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Reset(object sender, RoutedEventArgs e)
         {
-            this.Reset();
-        }
-        private void Reset()
-        {
-            
-
+            foreach (Ville item in ListeVilles)
+            {
+                Ellipse ellipse = Dictionnaire_ville_ellipse[item];
+                image_canvas.Children.Remove(ellipse);
+            }
+            ListeVilles.Clear();
+            ListeVillesSQLite.Clear();
         }
        private void Supprimer_Ville(object sender, MouseButtonEventArgs e)
         {
-            /*Ville a = (e.Source as ListView).SelectedItem as Ville;
+            //test si on a clické sur le header
+            Ville a = (e.Source as ListView).SelectedItem as Ville;
 
-            ListeVilles.Remove(a);
-            var uidelement = "elipse" + a.Nom;
-            Ellipse ellipse = new Ellipse() { Uid =(string)uidelement};
+            if (a!=null)
+            {
+                ListeVilles.Remove(a);
 
-            image_canvas.Children.RemoveAt();
-            image_canvas.Children.Remove(ellipse);/*/
+                //image_canvas.Children.RemoveAt();
 
+                Ellipse ellipse = Dictionnaire_ville_ellipse[a];
+                image_canvas.Children.Remove(ellipse);
+            }
         }
+            
     }
 
 
