@@ -1,0 +1,143 @@
+﻿<Window ResizeMode="NoResize" Height="600" Width="900" x:Class="ApplicationRoute.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApplicationRoute"
+        mc:Ignorable="d"
+        Title="MainWindow" >
+    <Window.Resources>
+        <DataTemplate x:Key="cellule">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding X}" Grid.Column="0"/>
+                <TextBlock Text="{Binding Y}" Grid.Column="1"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <DockPanel>
+
+        <TabControl Margin="31,33.4,26,27.4" Name="tab_global">
+
+            <TabItem Header="Carte" Name="tab_carte" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="61*"></ColumnDefinition>
+                        <ColumnDefinition Width="389*"/>
+                        <ColumnDefinition Width="381*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Canvas Name="image_canvas" Background="White" Grid.Column="0" Grid.Row="0" Height="425" 
+                        VerticalAlignment="Top" HorizontalAlignment="left" Width="438" Margin="10,10,0,0" MouseLeftButtonDown="getPointedVille" Grid.ColumnSpan="2" >
+                        <Image x:Name="image" Source="Ressources/carte.png" Width="438"  Height="425"/>
+                    </Canvas>
+
+                    <!--peut on le mettre en datatemplate ??-->
+                    <Button Grid.Column="2" Margin="24.4,19,136.2,433.8" Click="RechercheVilleSQLite" Name="btn_run">
+                        Recherche des villes dans la BD SQLite
+                    </Button>
+                    
+                    <Grid Margin="0,0,1.4,-0.2" Grid.ColumnSpan="2">
+                        <ListView MaxWidth="350" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"  Margin="454,50,-394.8,0" Height="auto" VerticalAlignment="Top" Name="grid_first" ItemsSource="{Binding Liste_Villes}"  MouseDoubleClick="Supprimer_Ville" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" Width="155" DisplayMemberBinding="{Binding Nom}" />
+                                    <GridViewColumn Header="X" Width="100" DisplayMemberBinding="{Binding X}" />
+                                    <GridViewColumn Header="Y" Width="100" DisplayMemberBinding="{Binding Y}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+
+                    <!--<ListBox Grid.Column="1" ItemsSource="{Binding villes_choisie}" ItemTemplate="{StaticResource maListe}" Margin="10,10,10,0"></ListBox>-->
+                </Grid>
+            </TabItem>
+
+            <TabItem IsEnabled="False" Header="Listes" Name="tab_liste">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="6*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+                        <Label HorizontalAlignment="Left">Recherche des villes depuis la BD SQLite:</Label>
+                        <DockPanel>
+                            <Label DockPanel.Dock="Left"  >Nom de la ville</Label>
+                            <TextBox Width="203" Name="name_ville"></TextBox>
+                            <Button DockPanel.Dock="Right" Margin="-320,1,1,1"  Width="112" Click="Recherche" >Recherche</Button>
+                        </DockPanel>
+                    </StackPanel>
+
+                    <Grid>
+                        <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="False"  Margin="164,66,218.2,-55.8" MaxHeight="500" Height="auto" Name="grid_seconde" ItemsSource="{Binding ListeVillesSQLite}"  MouseDoubleClick="Ajouter_ville_liste" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" Width="250" DisplayMemberBinding="{Binding Nom}" />
+                                    <GridViewColumn Header="X" Width="100" DisplayMemberBinding="{Binding X}" />
+                                    <GridViewColumn Header="Y" Width="100" DisplayMemberBinding="{Binding Y}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button Margin="704,372,20.2,21" Height="25" Click="RetourCarte" >
+                            Back to Carte
+                        </Button>
+                    </Grid>
+                    
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Parametrage" Name="tab_parametrage">
+                <StackPanel HorizontalAlignment="Stretch" Name="panel_parametrage">
+                    <Label Margin="5">Nbr Chemin Start Génération</Label>
+                    <TextBox Margin="5" Text="{Binding NbrCheminParGenerationDepart}" Name="txt_nbrchemin"></TextBox>
+                    <Label Margin="5">Taille Population (Nbr de génération qu'on va avoir)</Label>
+                    <TextBox Margin="5" Text="{Binding Taille_population}"></TextBox>
+                    <Label Margin="5">Mutation</Label>
+                    <TextBox Margin="5" Text="{Binding Mutation}"></TextBox>
+                    <Label Margin="5">Crossver</Label>
+                    <TextBox Margin="5" Text="{Binding Crossover}"></TextBox>
+                    <Label Margin="5">Elite</Label>
+                    <TextBox Margin="5" Text="{Binding Elite}" Name="txt_elite"></TextBox>
+                    <Label Margin="5,5,5,0" HorizontalAlignment="Center">Faite attention au parametre saisie !! Elles doivent être logique.</Label>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Run" Name="tab_run">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="0" Margin="10,10,10,0" Height="auto" VerticalAlignment="Top" Name="grid_resultat" ItemsSource="{Binding ListeVillesSQLite}" IsReadOnly="True" AutoGenerateColumns="False" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Génération"  Binding="{Binding }"   Width="610" MaxWidth="610" />
+                            <DataGridTextColumn Header="Moyen Score" Binding="{Binding }"  Width="100" MaxWidth="610"/>
+                            <DataGridTextColumn Header="Top Score"  Binding="{Binding }" Width="100" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="1" Margin="0,10.2,0.2,-0.2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Margin="10,10,10,10" Name="txt_meilleur_chemin"  Grid.Column="0" VerticalAlignment="Stretch" IsEnabled="False" Text="Meilleur Chemin ??"></TextBlock>
+                        <Button Margin="10"  Grid.Column="1" Click="RunProgramme" Name="btn_run2" >Run</Button>
+
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+
+
+
+        </TabControl>
+
+    </DockPanel>
+</Window>

@@ -1,0 +1,7 @@
+c:\users\dell\source\repos\ApplicationRoute\Console\bin\Debug\Console.exe.config
+c:\users\dell\source\repos\ApplicationRoute\Console\bin\Debug\Console.exe
+c:\users\dell\source\repos\ApplicationRoute\Console\bin\Debug\Console.pdb
+c:\users\dell\source\repos\ApplicationRoute\Console\obj\Debug\Console.csprojAssemblyReference.cache
+c:\users\dell\source\repos\ApplicationRoute\Console\obj\Debug\Console.csproj.CoreCompileInputs.cache
+c:\users\dell\source\repos\ApplicationRoute\Console\obj\Debug\Console.exe
+c:\users\dell\source\repos\ApplicationRoute\Console\obj\Debug\Console.pdb
