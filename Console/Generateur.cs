@@ -10,6 +10,7 @@ namespace ConsoleApp
 
         public Generateur()
         {
+
         }
 
         /*
@@ -80,9 +81,17 @@ namespace ConsoleApp
                     int tailleVilleXover = chemins[indexChemin1].Villes.Count;
                     var nPremieresVilles = chemins[indexChemin1].Villes.Take(pivot);
 
-                    var nSecondesVilles = chemins[indexChemin2].Villes.Skip(Math.Max(0, tailleVilleXover - pivot));
-                    villesXover.AddRange(nPremieresVilles);
-                    villesXover.AddRange(nSecondesVilles);
+                    var nSecondesVilles = chemins[indexChemin2].Villes.Skip(pivot);
+                    foreach (Ville item in nPremieresVilles)
+                    {
+                        villesXover.Add(item);
+                    }
+                    foreach (Ville item in nSecondesVilles)
+                    {
+                        villesXover.Add(item);
+                    }
+                    //villesXover.AddRange(nPremieresVilles);
+                    //villesXover.AddRange(nSecondesVilles);
 
                     ch = new Chemin(villesXover);
                 }
@@ -126,13 +135,9 @@ namespace ConsoleApp
         }
 
         //Elite function
-
         public List<Chemin> Elite(List<Chemin> chemins, int nbElite)
         {
-            List<Chemin> eliteChemin = new List<Chemin>();
-
-
-            return null;
+            return chemins.OrderBy(chemin => chemin.Score).Take(nbElite).ToList();
         }
 
         // fonction factoriel
