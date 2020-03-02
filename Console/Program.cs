@@ -179,7 +179,7 @@ namespace ConsoleApp
 
             //Mutation
             List<Chemin> cheminsModifies = generateur.Echanger(chemins, echangeCoefficient);
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             Console.WriteLine("\n \n *****liste des chemins modifiés*****");
             Console.WriteLine(String.Join("\n", cheminsModifies));
             totale.AddRange(cheminsModifies);
@@ -191,15 +191,15 @@ namespace ConsoleApp
             Console.WriteLine("\n \n *****Chemins générés par le xover*****");
             Console.WriteLine(String.Join("\n", cheminsXover));
             totale.AddRange(cheminsXover);
-            Thread.Sleep(4000);
+            //Thread.Sleep(4000);
 
             //elite
-            List<Chemin> cheminsElite = generateur.Elite(chemins, eliteCoefficient);
-            Thread.Sleep(4000);
+                List<Chemin> cheminsElite = generateur.Elite(chemins, eliteCoefficient);
+            //Thread.Sleep(4000);
             Console.WriteLine("\n \n *****Chemins générés par le Elite");
             Console.WriteLine(String.Join("\n", cheminsElite));
             totale.AddRange(cheminsElite);
-            Thread.Sleep(4000);
+            //Thread.Sleep(4000);
 
             //resultat
             resultat = generateur.Elite(totale, nbChemins);

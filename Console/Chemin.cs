@@ -7,17 +7,19 @@ namespace ConsoleApp
 {
     public class Chemin : IEquatable<Chemin>
     {
-        public double Score { get; set; }
+        public float Score { get; set; }
         public List<Ville> Villes { get; set; }
+
+        public string VillesAffichees {get; set;}
 
         public Chemin(List<Ville> villes)
         {
             this.Villes = villes;
             this.Score = CalculateScore();
-
+            this.VillesAffichees = string.Join(",", Villes.Select(x => x.ToString()).ToArray());
         }
         //Calculer le score
-        private double CalculateScore()
+        private float CalculateScore()
         {
             int nbVilles = Villes.Count;
             double score = 0;
@@ -30,7 +32,7 @@ namespace ConsoleApp
                 double calcul = Math.Sqrt(Math.Pow(Xtotal, 2) + Math.Pow(Ytotal, 2));
                 score += calcul;
             }
-            return score;
+            return (float)score;
         }
 
         public bool ContientDoublons()

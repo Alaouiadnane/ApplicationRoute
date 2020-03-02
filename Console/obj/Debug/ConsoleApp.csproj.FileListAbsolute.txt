@@ -10,7 +10,6 @@ C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\bin\Debug\x64\sqlite3.dll
 C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\bin\Debug\Console.exe.config
 C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\bin\Debug\Console.exe
 C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\bin\Debug\Console.pdb
-C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\obj\Debug\ConsoleApp.csprojAssemblyReference.cache
 C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\obj\Debug\Console.exe
 C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\obj\Debug\Console.pdb
 C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\bin\Debug\System.Data.SQLite.dll
