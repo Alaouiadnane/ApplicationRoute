@@ -45,13 +45,58 @@ namespace ApplicationRoute
         public MainWindow()
         {
             InitializeComponent();
-
+            Initializetable();
             //initialisation liste des villes recuperes de SQLite
             grid_seconde.ItemsSource = ListeVillesSQLite;
             grid_first.ItemsSource = ListeVilles;
             g.ItemsSource = ListeChemin;
         }
+        public void Initializetable()
+        {
+            //hadi diyal te3maar table villes hhhh
+            string cs = @"URI=file:C:\Users\DELL\Documents\Villes.db";
+            
+            var con = new SQLiteConnection(cs);
+            con.Open();
+            var cmd = new SQLiteCommand(con);
 
+            cmd.CommandText = "DROP TABLE IF EXISTS Villes";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = @"CREATE TABLE Villes(id INTEGER PRIMARY KEY,
+                    name TEXT, x REAL, y REAL, xmin REAL, xmax REAL, ymin REAL, ymax REAL)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Marrakech',273,127,270,280,120,130)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Rabat',300,62,300,310,60,70)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Casablanca',282,72,280,290,70,80)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Agadir',324,158,230,240,150,160)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Tanger',328,14,325,335,13,23)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('DAKHLA',73,340,70,80,332,345)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('BENI MELLAL',312,108,310,320,100,110)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Tan Tan',197,209,190,200,205,215)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Essaouira',232,128,230,240,120,130)";
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Oujda',414,43,405,420,40,50)";
+            cmd.ExecuteNonQuery();
+        }
         //methode lors du click sur boutton sur carte pour aller chercher une ville sur SQLite
         public void RechercheVilleSQLite(object sender, RoutedEventArgs e)
         {

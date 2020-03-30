@@ -20,7 +20,7 @@ namespace ConsoleApp
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = @"CREATE TABLE Villes(id INTEGER PRIMARY KEY,
-                    name TEXT, x REAL, y REAL)";
+                    name TEXT, x REAL, y REAL, xmin REAL, xmax REAL, ymin REAL, ymax REAL)";
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Marrakech',273,127,270,280,120,130)";
