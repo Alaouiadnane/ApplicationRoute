@@ -10,12 +10,10 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
 
-
-            /*string cs = @"URI=file:C:\Users\DELL\Documents\Villes.db";
-
+            //hadi diyal te3maar table villes hhhh
+            string cs = @"URI=file:C:\Users\DELL\Documents\Villes.db";
             var con = new SQLiteConnection(cs);
             con.Open();
-
             var cmd = new SQLiteCommand(con);
 
             cmd.CommandText = "DROP TABLE IF EXISTS Villes";
@@ -25,28 +23,6 @@ namespace ConsoleApp
                     name TEXT, x REAL, y REAL)";
             cmd.ExecuteNonQuery();
 
-            cmd.CommandText = "INSERT INTO Villes(name, x,y) VALUES('CASABLANCA',-7.5898434,33.5731104)";
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = "INSERT INTO Villes(name, x, y) VALUES('RABAT',-6.8325500,34.0132500)";
-            cmd.ExecuteNonQuery();
-
-            cmd.CommandText = "INSERT INTO Villes(name, x, y) VALUES('MARRAKECH',-8.008889,31.630000)";
-            cmd.ExecuteNonQuery();
-
-
-            Console.WriteLine("Table Villes created");
-            Console.ReadLine();
-            /*/
-            //connection string
-
-            //hadi diyal te3maar table villes hhhh
-            string cs = @"URI=file:C:\Users\DELL\Documents\Villes.db";
-            var con = new SQLiteConnection(cs);
-            con.Open();
-            var cmd = new SQLiteCommand(con);
-
-            /*
             cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Marrakech',273,127,270,280,120,130)";
             cmd.ExecuteNonQuery();
 
@@ -61,9 +37,6 @@ namespace ConsoleApp
 
             cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('Tanger',328,14,325,335,13,23)";
             cmd.ExecuteNonQuery();
-            /*/
-
-            /////////////////////////////////////////////////////////////////////
 
             cmd.CommandText = "INSERT INTO Villes(name,x,y, xmin ,xmax, ymin,ymax) VALUES('DAKHLA',73,340,70,80,332,345)";
             cmd.ExecuteNonQuery();

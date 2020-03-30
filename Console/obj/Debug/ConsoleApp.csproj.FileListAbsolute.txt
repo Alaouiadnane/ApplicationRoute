@@ -17,3 +17,4 @@ C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\bin\Debug\System.Data.SQLite.x
 C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\bin\Debug\System.Data.SQLite.dll.config
 C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\obj\Debug\ConsoleApp.csproj.CopyComplete
 C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\obj\Debug\ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\C#\ApplicationRoute\Console\obj\Debug\ConsoleApp.csprojAssemblyReference.cache

@@ -117,7 +117,6 @@ namespace ConsoleApp
                     int indexB = 0;
                     do
                     {
-                        Random rnd = new Random();
                         indexA = rnd.Next(chemins[i].Villes.Count);
                         indexB = rnd.Next(chemins[i].Villes.Count);
                     } while (indexA == indexB);
